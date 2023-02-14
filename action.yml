@@ -7,14 +7,14 @@ branding:
   color: yellow
 
 inputs:
-  api-key:
-    description: 'Cloud Conformity API key'
-    required: true
   aws-region:
     description: 'AWS region for the Cloudformation stack'
     required: true
-  cc-account-id:
-    description: 'Cloud Conformity account ID for data payload'  # Is this required?
+  cloudconformity-account-id:
+    description: 'Cloud Conformity account ID for data payload'
+    required: false
+  cloudconformity-api-key:
+    description: 'Cloud Conformity API key'
     required: true
   file-path:
     description: 'Path to CloudFormation template'
@@ -23,12 +23,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    # - id: install-jq
-    #   name: 'Install JQ 🔧'
-    #   shell: bash
-    #   run: echo 'WIP JQ'
-
     - id: cfn-scan
-      name: "Run scan script" 
+      name: "Run scan script 🔎" 
       shell: bash
-      run: ./temp-bash.sh  # WIP
+      run: ./temp-bash.sh 
+      env:
+        AWS_REGION: ${{ inputs.aws-region }}
+        CC_API_KEY: ${{ inputs.cloudconformity-api-key }}
+        CC_ACCOUNT_ID: ${{ inputs.cloudconformity-account-id }}
+        FILE_PATH: ${{ inputs.file-path }}
+

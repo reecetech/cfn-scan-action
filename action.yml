@@ -1,0 +1,34 @@
+---
+name: 'Execute CloudConformity scan on stack template'
+description: Using reecetech's Hermitcrab tooling, this action staticly analyses Cloudformation templates.
+
+branding:
+  icon: 'zap'
+  color: yellow
+
+inputs:
+  api-key:
+    description: 'Cloud Conformity API key'
+    required: true
+  aws-region:
+    description: 'AWS region for the Cloudformation stack'
+    required: true
+  cc-account-id:
+    description: 'Cloud Conformity account ID for data payload'  # Is this required?
+    required: true
+  file-path:
+    description: 'Path to CloudFormation template'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    # - id: install-jq
+    #   name: 'Install JQ 🔧'
+    #   shell: bash
+    #   run: echo 'WIP JQ'
+
+    - id: cfn-scan
+      name: "Run scan script" 
+      shell: bash
+      run: ./temp-bash.sh  # WIP

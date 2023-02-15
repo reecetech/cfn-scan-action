@@ -4,8 +4,11 @@ set -euo pipefail
 
 contents=$(cat "${FILE_PATH}" jq ',' -MRs)
 
-# TO DO: Add if statement checking if CC_ACCOUNT_ID is empty; allows empty
-payload="{\"data\":{\"attributes\":{\"type\":\"cloudformation-template\",\"accountId\":\"${CC_ACCOUNT_ID}\",\"contents\":${contents}}}}"
+if [ -n "${CC_ACCOUNT_ID}" ]; then
+    payload="{\"data\":{\"attributes\":{\"type\":\"cloudformation-template\",\"accountId\":\"${CC_ACCOUNT_ID}\",\"contents\":${contents}}}}"
+else
+    payload="{\"data\":{\"attributes\":{\"type\":\"cloudformation-template\",\"contents\":${contents}}}}"
+fi
 
 echo ""
 echo "INFO: Beginning security scan of template"

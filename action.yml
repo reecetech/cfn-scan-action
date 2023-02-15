@@ -28,7 +28,7 @@ runs:
 
     - name: "Run scan script 🔎" 
       shell: bash
-      run: ./scan_cloudformation.sh 
+      run: ls -la && ./scan_cloudformation.sh
       env:
         AWS_REGION: ${{ inputs.aws-region }}
         CC_API_KEY: ${{ inputs.cloudconformity-api-key }}

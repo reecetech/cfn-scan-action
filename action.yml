@@ -23,8 +23,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - id: cfn-scan
-      name: "Run scan script 🔎" 
+    - name: "Checkout code 📥"
+      uses: actions/checkout@v3
+
+    - name: "Run scan script 🔎" 
       shell: bash
       run: ./scan_cloudformation.sh 
       env:
@@ -32,4 +34,3 @@ runs:
         CC_API_KEY: ${{ inputs.cloudconformity-api-key }}
         CC_ACCOUNT_ID: ${{ inputs.cloudconformity-account-id }}
         FILE_PATH: ${{ inputs.file-path }}
-

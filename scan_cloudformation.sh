@@ -14,7 +14,7 @@ echo ""
 echo "INFO: Beginning security scan of template"
 
 echo Request:
-echo "${payload}" | jq '.' -MR  # Without -R flag is throwing errors (control characters need to be escaped)
+echo "${payload}" | jq '.' -M
 
 response=$(set +e ; curl -L --fail --show-error --silent -X POST \
     -H "Authorization: ApiKey ${CC_API_KEY}" \

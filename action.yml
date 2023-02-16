@@ -1,8 +1,8 @@
 ---
 name: 'Execute CloudConformity scan on stack template'
 description: |
-  Using reecetech's Hermitcrab tooling, this action staticly analyses Cloudformation
-  templates.
+  Using reecetech's Hermitcrab tooling, this action staticly analyses
+  Cloudformation templates.
 
 branding:
   icon: 'zap'

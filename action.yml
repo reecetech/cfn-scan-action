@@ -27,6 +27,7 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: reecetech/cfn-scan-action
+        path: cfn-scan
 
     - name: "Run scan script 🔎" 
       shell: bash

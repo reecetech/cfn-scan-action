@@ -21,6 +21,9 @@ inputs:
   file-path:
     description: 'Path to CloudFormation template'
     required: true
+  temp-input:
+    description: 'Trigger update-doc step'
+    required: false
 
 runs:
   using: 'composite'

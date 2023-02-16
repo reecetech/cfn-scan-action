@@ -26,7 +26,7 @@ runs:
     - name: "Checkout code 📥"
       uses: actions/checkout@v3
       with:
-        repository: reecetech/cfn-scan-action@fix/debug
+        repository: reecetech/cfn-scan-action
         path: cfn-scan
 
     - name: "Run scan script 🔎" 

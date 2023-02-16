@@ -27,10 +27,13 @@ runs:
       uses: actions/checkout@v3
       with:
         repository: reecetech/cfn-scan-action
+        path: cfn-scan
 
     - name: "Run scan script 🔎" 
       shell: bash
-      run: ls -la && ./scan_cloudformation.sh
+      run: |
+        ls -la && ls -la cfn-scan
+        cfn-scan/scan_cloudformation.sh
       env:
         AWS_REGION: ${{ inputs.aws-region }}
         CC_API_KEY: ${{ inputs.cloudconformity-api-key }}

@@ -10,7 +10,7 @@ Scan CloudFormation templates using CloudConformity.
 
 - id: cfn-scan
   name: "Run cfn-scan 🔎"
-  uses: reecetech/cfn-scan-action@v0
+  uses: reecetech/cfn-scan-action@0.0.1
   with:
     cloudconformity-api-key: ###
     aws-region: ap-northeast-1

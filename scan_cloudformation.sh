@@ -23,7 +23,7 @@ response=$(set +e ; curl -L --fail --show-error --silent -X POST \
     --data-binary "${payload}" | jq '.' -M | jq '.data[] | select(.attributes.status == "FAILURE")' ; set -e)
 
 if [ -n "$response" ]; then
-    highrisk=$(echo "$response" | jq 'select(.attributes | ."risk-level | contains("HIGH") or contains("EXTREME"))')
+    highrisk=$(echo "$response" | jq 'select(.attributes | ."risk-level" | contains("HIGH") or contains("EXTREME"))')
     if [ -n "$highrisk" ]; then
         echo "ERROR: HIGH Risk (or above) Violation Found via CloudConformity. You MUST fix them before deployment. Details are shown as below:"
         echo "$highrisk"

@@ -4,7 +4,7 @@ name: Test and Release
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
-      - '**'
+      - main
 
 jobs:
   yamllint:
@@ -41,7 +41,7 @@ jobs:
             README.md
 
       - id: commit
-        # if: steps.changes.outputs.files_changed == 'true'
+        if: steps.changes.outputs.files_changed == 'true'
         name: Commit README changes 📥
         uses: EndBug/add-and-commit@v9
         with:

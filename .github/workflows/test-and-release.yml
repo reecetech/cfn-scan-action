@@ -89,7 +89,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo -e "## ✨ Published\n" | tee -a "${GITHUB_STEP_SUMMARY}"
-          echo -e "Name: ${{ github.event.repository.name }}\n" | tee -a "${GITHUB_STEP_SUMMARY}"
-          echo -e "Version: ${{ steps.version.outputs.v-version }}\n" | tee -a "${GITHUB_STEP_SUMMARY}"
-          echo -e "Moved tag: ${{ steps.version.outputs.major-v-version }}\n" | tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "## ✨ Published\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Name: ${{ github.event.repository.name }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Version: ${{ steps.version.outputs.v-version }}\n" | \
+            tee -a "${GITHUB_STEP_SUMMARY}"
+          echo -e "Moved tag: ${{ steps.version.outputs.major-v-version }}\n" \
+            | tee -a "${GITHUB_STEP_SUMMARY}"

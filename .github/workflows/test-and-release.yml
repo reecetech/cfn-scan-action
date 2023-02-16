@@ -4,7 +4,7 @@ name: Test and Release
 on:  # yamllint disable-line rule:truthy
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   yamllint:

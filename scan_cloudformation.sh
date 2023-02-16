@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-contents=$(cat "${FILE_PATH}" jq ',' -MRs)
+contents=$(< "${FILE_PATH}" jq ',' -MRs)
 
 if [ -n "${CC_ACCOUNT_ID}" ]; then
     payload="{\"data\":{\"attributes\":{\"type\":\"cloudformation-template\",\"accountId\":\"${CC_ACCOUNT_ID}\",\"contents\":${contents}}}}"

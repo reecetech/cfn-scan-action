@@ -9,27 +9,6 @@ on:  # yamllint disable-line rule:truthy
       - '**'
 
 jobs:
-  pylint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'  # Should match Pipfile / "python_version"
-
-      - name: Setup Python dependencies
-        shell: bash
-        run: |
-          pip install pipenv
-          pipenv install --dev --system
-
-      - name: Run pylint
-        shell: bash
-        run: pylint --rcfile .pylintrc *.py
-
   yamllint:
     runs-on: ubuntu-latest
     steps:
@@ -42,25 +21,6 @@ jobs:
         uses: ibiqlik/action-yamllint@v3
         with:
           strict: true
-
-  reece-diff:
-    runs-on: ubuntu-latest
-    steps:
-      - id: checkout
-        name: Checkout code 🛒
-        uses: actions/checkout@v3
-
-      - id: diff
-        name: Check that reece/action.yaml only differs where it should 🔎
-        shell: bash
-        run: |
-          set +euo pipefail
-          lines="$(diff -u0 action.yaml reece/action.yaml | grep -Ev "image: ('Dockerfile|docker://)" | wc -l)"
-          set -euo pipefail
-          if [[ "${lines}" != "3" ]] ; then
-            echo "ERROR: action.yaml and reece/action.yaml should only differ on the image: line"
-            exit 1
-          fi
 
   update-doc:
     if: ${{ github.ref_name != github.event.repository.default_branch }}
@@ -76,7 +36,7 @@ jobs:
         name: Run auto-doc 📃
         uses: tj-actions/auto-doc@v1.2.15
         with:
-          action: 'action.yaml'
+          action: 'action.yml'
 
       - id: changes
         name: Verify changed files 🔎
@@ -98,7 +58,6 @@ jobs:
   release:
     needs:
       - pylint
-      - reece-diff
       - yamllint
     runs-on: ubuntu-latest
     steps:
@@ -115,7 +74,7 @@ jobs:
       - id: release
         if: ${{ github.ref_name == github.event.repository.default_branch }}
         name: Release version 📦
-        uses: marvinpinto/action-automatic-releases@919008cf3f741b179569b7a6fb4d8860689ab7f0
+        uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           draft: false

@@ -1,1 +1,3 @@
-# cfn-scan-action
+## cfn-scan-action
+
+Scan CloudFormation templates using CloudConformity.

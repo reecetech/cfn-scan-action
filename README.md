@@ -2,4 +2,4 @@
 
 Scan CloudFormation templates using CloudConformity.
 
-## INPUTS
+## Inputs

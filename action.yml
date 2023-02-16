@@ -1,6 +1,8 @@
 ---
 name: 'Execute CloudConformity scan on stack template'
-description: Using reecetech's Hermitcrab tooling, this action staticly analyses Cloudformation templates.
+description: |
+  Using reecetech's Hermitcrab tooling, this action staticly analyses Cloudformation
+  templates.
 
 branding:
   icon: 'zap'
@@ -29,7 +31,7 @@ runs:
         repository: reecetech/cfn-scan-action
         path: cfn-scan
 
-    - name: "Run scan script 🔎" 
+    - name: "Run scan script 🔎"
       shell: bash
       run: cfn-scan/scan_cloudformation.sh
       env:

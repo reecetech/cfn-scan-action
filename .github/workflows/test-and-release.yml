@@ -35,7 +35,7 @@ jobs:
 
       - id: changes
         name: Verify changed files 🔎
-        uses: tj-actions/verify-changed-files@v9.1
+        uses: tj-actions/verify-changed-files@v17
         with:
           files: |
             README.md
